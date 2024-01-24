@@ -16,14 +16,24 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
       rel="stylesheet"
     />
-    <title>Music Player Version 2</title>
+    <title>Music Player</title>
   </head>
   <body>
+    <div id="changename">
+      <h2>Edit Playlist Name</h2>
+      <br />
+      <div id="change"></div>
+      <button onclick="changeName()" class="subclo">Submit</button>
+      <button onclick="hide()">Close</button>
+    </div>
+
     <div class="content">
       <div class="top-bar">
         <span class="material-symbols-rounded"> expand_more </span>
         <span>Now Playing</span>
-        <span class="material-symbols-rounded"> more_horiz </span>
+        <button onclick="addSongToPlaylist(index)" title="Add to Playlist">
+          ➕
+        </button>
       </div>
       <div class="image-wrapper">
         <div class="music-image">
@@ -52,21 +62,18 @@
         <span class="material-symbols-rounded" id="next"> skip_next </span>
         <span class="material-symbols-rounded" id="shuffle"> shuffle </span>
       </div>
-      <!-- Add this form to your existing HTML -->
-      <form id="playlist-form">
-        <label for="playlist-name">Playlist Name:</label>
-        <input type="text" id="playlist-name" name="playlist-name" required />
-
-        <button type="submit">Create Playlist</button>
-      </form>
     </div>
 
     <audio src="./music/song1.mp3" class="main-song"></audio>
+    <div id="playlist-container">
+      <div class="names">
+        <h2 id="playName">Playlist</h2>
+        <button id="change" title="Name playlist" onclick="change()">🖋️</button>
+      </div>
+      <br />
+    </div>
 
-    <script src=""></script>
-    <script src="./script.js"></script>
-    <script src="./server.js"></script>
-    <script src="./playListModel.js"></script>
     <script src="./playlist.js"></script>
+    <script src="./scripts.js"></script>
   </body>
 </html>

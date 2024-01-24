@@ -137,3 +137,85 @@ Audio.addEventListener("ended", () => {
   loadData(index);
   playSong();
 });
+
+let playlist = [];
+
+function addSongToPlaylist(index) {
+  let duration = () => {
+    // Update finalDuration
+    let AudioDuration = Audio.duration;
+    let finalMinutes = Math.floor(AudioDuration / 60);
+    let finalSeconds = Math.floor(AudioDuration % 60);
+    if (finalSeconds < 10) {
+      finalSeconds = "0" + finalSeconds;
+    }
+    return (duration = finalMinutes + ":" + finalSeconds);
+  };
+  let songName = songs[index - 1].name;
+  let artist = songs[index - 1].artist;
+  let durations = `${duration()}`;
+
+  let song = {
+    name: songName,
+    artist: artist,
+    duration: durations,
+  };
+
+  if (isSongAlreadyAdded(song)) {
+    alert("Song already added!");
+  } else {
+    playlist.push(song);
+    console.log("Added to playlist: " + song.name);
+    addToPlaylistDiv(song);
+  }
+
+  function isSongAlreadyAdded(song) {
+    for (let i = 0; i < playlist.length; i++) {
+      if (
+        playlist[i].name === song.name &&
+        playlist[i].artist === song.artist &&
+        playlist[i].duration === song.duration
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
+
+function addToPlaylistDiv(song) {
+  let playlistDiv = document.getElementById("playlist-container");
+  let button = document.createElement("button");
+  button.textContent =
+    song.name + " - " + song.artist + " (" + song.duration + ")";
+  button.style.width = "100%";
+  button.style.marginBottom = "10px";
+  button.addEventListener("click", function () {});
+  playlistDiv.appendChild(button);
+  playlistDiv.appendChild(document.createElement("br")); // Add line break
+}
+let input = document.createElement("input");
+input.style.height = "30px";
+input.style.fontSize = "15px";
+input.style.fontFamily = "algerian";
+
+function changeName() {
+  let playName = document.getElementById("playName");
+  playName.innerText = input.value;
+  hide();
+}
+function change() {
+  let changename = document.getElementById("changename");
+  let change = document.getElementById("change");
+  change.innerHTML = ""; // Clear previous playlist
+
+  input.placeholder = "Playlist Name:";
+  change.appendChild(input);
+
+  changename.style.display = "block";
+}
+
+function hide() {
+  let changename = document.getElementById("changename");
+  changename.style.display = "none";
+}
