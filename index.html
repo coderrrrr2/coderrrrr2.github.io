@@ -19,6 +19,12 @@
     <title>Music Player</title>
   </head>
   <body>
+    <div id="allsongs-container">
+      <div class="names">
+        <h2>All Songs</h2>
+      </div>
+      <br />
+    </div>
     <div id="changename">
       <h2>Edit Playlist Name</h2>
       <br />
@@ -26,6 +32,22 @@
       <button onclick="changeName()" class="subclo">Submit</button>
       <button onclick="hide()">Close</button>
     </div>
+
+    <div id="createPlaylistForm" style="display: none;">
+      <h2>Create a New Playlist</h2>
+      <form id="playlistForm">
+        <label for="playlistName">Playlist Name:</label>
+        <input type="text" id="playlistName" name="playlistName" required>
+    
+        <label for="selectedSongs">Select Songs:</label>
+        <select id="selectedSongs" name="selectedSongs" multiple required>
+          <!-- Songs will be dynamically populated from the server -->
+        </select>
+    
+        <button type="button" onclick="createPlaylist()">Submit Playlist</button>
+      </form>
+    </div>
+    <button onclick="showCreatePlaylistForm()">Create Playlist</button>
 
     <div class="content">
       <div class="top-bar">
